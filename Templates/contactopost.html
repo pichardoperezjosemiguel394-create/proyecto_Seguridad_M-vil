@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Contactos{% endblock %}
+{% block titulo %}Contacto Seguro{% endblock %}
 
 {% block contenido %}
 
 <!-- Banner -->
 <div class="container mt-5">
   <div class="text-center">
-    <img src="{{ url_for('static', filename='contact_banner.jpg') }}" 
+    <img src="{{ url_for('static', filename='secure-contact.png') }}" 
          class="img-fluid rounded shadow-sm mb-4" 
-         alt="AkiraCode Academy - Contacto" 
+         alt="Hacking Mobile Lab - Contacto Seguro" 
          style="max-height: 80px; object-fit: cover;">
   </div>
-  <h2 class="text-center mb-3">Ponte en Contacto con Nosotros</h2>
-  <p class="text-center text-muted">
-    En <strong>AkiraCode Academy</strong> estamos comprometidos contigo.  
-    Si tienes dudas, sugerencias o simplemente quieres saludarnos, no dudes en escribirnos.  
-    Nuestro equipo estará encantado de responderte con la rapidez y seriedad que mereces.
+  <h2 class="text-center mb-3" style="color: #00ff88;">Canal de Comunicación Seguro</h2>
+  <p class="text-center" style="color: #ffffff;">
+    En <strong style="color: #00ff88;">Hacking Mobile Lab</strong> mantenemos comunicaciones cifradas y seguras.  
+    Si tienes hallazgos de seguridad, vulnerabilidades o necesitas consultas técnicas especializadas,  
+    nuestro equipo de investigadores responderá a través de canales encriptados.
   </p>
 </div>
 
@@ -26,56 +26,62 @@
 
     <!-- Información de contacto -->
     <div class="col-md-5">
-      <div class="card h-100 shadow-lg border-0 rounded-3 bg-light">
-        <div class="card-body p-4">
-          <h4 class="card-title mb-4">Información de Contacto</h4>
-          <p class="text-muted">Siempre puedes encontrarnos en los siguientes canales:</p>
+      <div class="card h-100 shadow-lg border-0 rounded-3" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body p-4 text-white">
+          <h4 class="card-title mb-4" style="color: #00ff88;">Canales Seguros</h4>
+          <p class="text-muted">Utiliza solo estos canales verificados:</p>
           <ul class="list-unstyled">
             <li class="mb-3">
-              <i class="bi bi-envelope-fill text-primary"></i>
-              <strong> Email:</strong> contacto@akiracodeacademy.com
+              <i class="bi bi-shield-lock-fill" style="color: #00ff88;"></i>
+              <strong> Email Encriptado:</strong> secure@hackingmobilelab.com
             </li>
             <li class="mb-3">
-              <i class="bi bi-telephone-fill text-primary"></i>
-              <strong> Teléfono:</strong> +34 600 123 456
+              <i class="bi bi-key-fill" style="color: #00ff88;"></i>
+              <strong> PGP Key:</strong> 0x1A2B3C4D5E6F7890
             </li>
             <li class="mb-3">
-              <i class="bi bi-geo-alt-fill text-primary"></i>
-              <strong> Ubicación:</strong> Ciudad Tecnológica, España
+              <i class="bi bi-geo-alt-fill" style="color: #00ff88;"></i>
+              <strong> Ubicación:</strong> Secure Data Center
             </li>
           </ul>
-          <p class="small text-muted">Horario de atención: Lunes a Viernes, 9:00 - 18:00</p>
+          <p class="small text-muted">Respuesta en 24-48h por motivos de seguridad</p>
         </div>
       </div>
     </div>
 
     <!-- Formulario -->
     <div class="col-md-7">
-      <div class="card h-100 shadow-lg border-0 rounded-3">
-        <div class="card-body p-4">
-          <h4 class="card-title text-center mb-4">Envíanos un mensaje</h4>
+      <div class="card h-100 shadow-lg border-0 rounded-3" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body p-4 text-white">
+          <h4 class="card-title text-center mb-4" style="color: #00ff88;">Mensaje Cifrado</h4>
           <form id="contactForm" action="" method="post" novalidate>
             <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre</label>
+              <label for="nombre" class="form-label">Alias / Código</label>
               <input type="text" class="form-control" id="nombre" name="nombre" 
-                     placeholder="Tu nombre completo" required>
-              <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
+                     placeholder="Tu alias o código de investigador" 
+                     style="background-color: #1a1a2e; color: white; border: 1px solid #00ff88;"
+                     required>
+              <div class="invalid-feedback">Se requiere identificación.</div>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">Correo Electrónico</label>
+              <label for="email" class="form-label">Correo Seguro</label>
               <input type="email" class="form-control" id="email" name="email" 
-                     placeholder="ejemplo@correo.com" required>
-              <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
+                     placeholder="correo@seguro.com" 
+                     style="background-color: #1a1a2e; color: white; border: 1px solid #00ff88;"
+                     required>
+              <div class="invalid-feedback">Correo no válido o inseguro.</div>
             </div>
             <div class="mb-3">
-              <label for="mensaje" class="form-label">Mensaje</label>
+              <label for="mensaje" class="form-label">Mensaje Cifrado</label>
               <textarea class="form-control" id="mensaje" name="mensaje" rows="4" 
-                        placeholder="Escribe tu mensaje aquí..." required></textarea>
+                        placeholder="Describe tu consulta técnica o hallazgo de seguridad..." 
+                        style="background-color: #1a1a2e; color: white; border: 1px solid #00ff88;"
+                        required></textarea>
               <div class="invalid-feedback">El mensaje no puede estar vacío.</div>
             </div>
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary btn-lg">
-                <i class="bi bi-send-fill"></i> Enviar Mensaje
+              <button type="submit" class="btn btn-lg" style="background: linear-gradient(135deg, #00ff88, #14ffec); color: #0c0c0c; border: none; font-weight: bold;">
+                <i class="bi bi-shield-check"></i> Enviar Mensaje Seguro
               </button>
             </div>
           </form>
@@ -88,10 +94,10 @@
 
 <!-- Toast flotante -->
 <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100">
-  <div id="successToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div id="successToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true" style="background-color: #00ff88; color: #0c0c0c;">
     <div class="d-flex">
       <div class="toast-body">
-        ✅ ¡Mensaje enviado correctamente! Gracias por contactarnos.
+        <i class="bi bi-shield-check"></i> ¡Mensaje enviado de forma segura! Usando cifrado.
       </div>
       <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
     </div>
@@ -124,5 +130,22 @@
     }, false)
   })()
 </script>
+
+<style>
+  .form-control:focus {
+    background-color: #1a1a2e !important;
+    color: white !important;
+    border-color: #14ffec !important;
+    box-shadow: 0 0 0 0.2rem rgba(20, 255, 236, 0.25) !important;
+  }
+
+  .form-control::placeholder {
+    color: #8f8f8f !important;
+  }
+
+  .invalid-feedback {
+    color: #ff6b6b !important;
+  }
+</style>
 
 {% endblock %}

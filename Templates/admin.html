@@ -12,7 +12,6 @@ toast: true,
 position: "top-end",
 showConfirmButton: false,
 timer: 2000,
-
 timerProgressBar: true,
 didOpen: (toast) => {
 toast.onmouseenter = Swal.stopTimer;
@@ -48,7 +47,7 @@ window.location.href = url;
 }
 </script>
 <div class="container p-5 mt-3">
-<h2 class=" text-center alert alert-danger py-4">Sistema de Gestión de Cursos</h2>
+<h2 class=" text-center alert alert-danger py-4">Sistema de Gestión Hacking</h2>
 <div class="row">
 <div class="row text-center">
 <div class="col-sm-4 mb-3 mb-sm-0">
@@ -57,17 +56,14 @@ window.location.href = url;
 <div class="col-md-8">
 <div class="card-body">
 <div class="card-body text-white">
-
-<h5 class="card-title">Perfil del Usuario</h5>
-<!-- p class="card-text">Mostrar registro de usuarios</p> -->
-<a href="{{ url_for('listar')}}" class="btn btn-outline-success">Ver
-Detalles</a>
+<h5 class="card-title">Gestión de Usuarios</h5>
+<a href="{{ url_for('listar')}}" class="btn btn-outline-success">Ver Detalles</a>
 </div>
 </div>
 </div>
 <div class="col-md-4 align-content-center">
 <img src="{{ url_for('static', filename='user.png') }}" class="img-fluid rounded-start"
-alt="Agregar Usuario ...">
+alt="Gestión de Usuarios">
 </div>
 </div>
 </div>
@@ -78,17 +74,15 @@ alt="Agregar Usuario ...">
 <div class="col-md-8">
 <div class="card-body">
 <div class="card-body text-white">
-<h5 class="card-title">Registrar Cursos</h5>
-<!-- <p class="card-text">Agregar los productos al sistema</p> -->
-<a href="{{ url_for('listar_productos_agregados') }}" class="btn btn-outline-success">Ver
-Detalles</a>
+<h5 class="card-title">Registrar Técnicas</h5>
+<a href="{{ url_for('listar_productos_agregados') }}" class="btn btn-outline-success">Ver Detalles</a>
 </div>
 </div>
 </div>
 <div class="col-md-4 align-content-center">
 <a href="{{ url_for('listar_productos_agregados') }}">
 <img src="{{ url_for('static', filename='agregarp.png') }}"
-class="img-fluid rounded-start" alt="..."></a>
+class="img-fluid rounded-start" alt="Registrar Técnicas"></a>
 </div>
 </div>
 </div>
@@ -99,17 +93,14 @@ class="img-fluid rounded-start" alt="..."></a>
 <div class="col-md-8">
 <div class="card-body">
 <div class="card-body text-white">
-<h5 class="card-title">Visualizar Cursos</h5>
-<!-- <p class="card-text">Muestra lista de productos</p> -->
-<a href="{{ url_for('listar_productos') }}" class="btn btn-outline-success">Ver
-Detalles</a>
+<h5 class="card-title">Inventario de Métodos</h5>
+<a href="{{ url_for('listar_productos') }}" class="btn btn-outline-success">Ver Detalles</a>
 </div>
-
 </div>
 </div>
 <div class="col-md-4 align-content-center">
 <img src="{{ url_for('static', filename='listarp.png') }}"
-class="img-fluid rounded-start" alt="...">
+class="img-fluid rounded-start" alt="Inventario de Métodos">
 </div>
 </div>
 </div>

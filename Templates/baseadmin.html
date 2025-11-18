@@ -15,73 +15,100 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- CSS propio -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
     
     <!-- DataTables -->
     <link href="DataTables/datatables.min.css" rel="stylesheet">
 </head>
-<body class="bg-success bg-opacity-10">
+<body class="bg-light">
 
 <header>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark"
-         style="background: linear-gradient(92deg, #000000,#242424,#5f5e5d,#e6e6e6);">
+    <!-- Navbar Mejorado - Estilo Seguridad Móvil -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" 
+         style="background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('admin') }}">Sistema</a>
+            <!-- Logo y Brand -->
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url_for('admin') }}">
+                <i class="fas fa-mobile-alt me-2" style="color: #00ff88;"></i>
+                <span>MobileSec Lab</span>
+            </a>
 
+            <!-- Toggler Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav justify-content-center flex-grow-1">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}">
+                            <i class="fas fa-home me-1"></i>
+                            Inicio
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Cursos
+                            <i class="fas fa-shield-alt me-1"></i>
+                            Análisis
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url_for('listar_productos_agregados') }}">Agregar</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('listar_productos') }}">Listar</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('listar_productos_agregados') }}">
+                                <i class="fas fa-plus me-2"></i>Nuevo Análisis
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('listar_productos') }}">
+                                <i class="fas fa-list me-2"></i>Ver Análisis
+                            </a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('listar') }}">Perfil</a>
+                        <a class="nav-link" href="{{ url_for('listar') }}">
+                            <i class="fas fa-user me-1"></i>
+                            Perfil
+                        </a>
                     </li>
                 </ul>
 
-                <!-- Mostrar nombre de usuario registrado -->
-                {% if session['nombre'] %}
-                <span class="navbar-text text-light ms-2">
-                    Welcome: {{ session['nombre'] }}
-                </span>
-                {% endif %}
+                <!-- User Info and Logout -->
+                <div class="d-flex align-items-center">
+                    {% if session['nombre'] %}
+                    <span class="navbar-text text-light me-3">
+                        <i class="fas fa-user-circle me-1"></i>
+                        {{ session['nombre'] }}
+                    </span>
+                    {% endif %}
 
-                <a class="btn btn-outline-success ms-2" href="{{ url_for('logout') }}">SALIR</a>
+                    <a class="btn btn-outline-light btn-sm logout-btn" href="{{ url_for('logout') }}">
+                        <i class="fas fa-sign-out-alt me-1"></i>
+                        Salir
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 </header>
 
-<main>
+<main class="py-4">
     {% block body %}
     {% endblock %}
 </main>
 
-<footer>
-    <hr>
-    <div class="container bg-light">
-        <p class="text-center">Copyright © 2025 - UNAN Managua</p>
+<footer class="mt-5">
+    <div class="container">
+        <hr>
+        <div class="text-center py-3">
+            <p class="mb-0 text-muted">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Copyright © 2025 - UNAN Managua
+            </p>
+        </div>
     </div>
 </footer>
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-      integrity="sha512-p1I..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
@@ -93,16 +120,17 @@
 <!-- Mensaje de ALERTA SALIR DEL SISTEMA -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+    const logoutBtn = document.querySelector('.logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function (e) {
             e.preventDefault();
             Swal.fire({
-                title: '¿Está seguro que desea cerrar el sistema?',
-                icon: 'warning',
+                title: '¿Está seguro que desea salir del sistema?',
+                icon: 'question',
                 showCancelButton: true,
-                confirmButtonText: 'Sí, cerrar',
-                cancelButtonText: 'Cancelar'
+                confirmButtonText: 'Sí, salir',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#16213e',
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = logoutBtn.href;
@@ -112,6 +140,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 </script>
+
+<style>
+    .navbar-nav .nav-link {
+        transition: all 0.3s ease;
+        border-radius: 5px;
+        margin: 0 2px;
+    }
+    
+    .navbar-nav .nav-link:hover {
+        background-color: rgba(0, 255, 136, 0.1);
+    }
+    
+    .navbar-nav .nav-link.active {
+        background-color: rgba(0, 255, 136, 0.2);
+        color: #00ff88 !important;
+        font-weight: bold;
+    }
+    
+    .dropdown-item {
+        transition: all 0.3s ease;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .logout-btn {
+        transition: all 0.3s ease;
+    }
+    
+    .logout-btn:hover {
+        transform: translateY(-1px);
+    }
+</style>
 
 </body>
 </html>

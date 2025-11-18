@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Acerca de{% endblock %}
+{% block titulo %}Acerca del Laboratorio{% endblock %}
 
 {% block contenido %}
 
 <!-- Encabezado con imagen -->
 <div class="container mt-5">
   <div class="text-center">
-    <img src="{{ url_for('static', filename='akiracode_banner.jpg') }}" 
+    <img src="{{ url_for('static', filename='hacking-lab-banner.png') }}" 
          class="img-fluid rounded shadow-sm mb-4" 
-         alt="AkiraCode Academy - Tu camino ninja en la programación" 
+         alt="Hacking Mobile Lab - Investigación en Seguridad Móvil" 
          style="max-height: 150px; object-fit: cover;">
   </div>
-  <h2 class="text-center mb-4">ACERCA DE AKIRACODE ACADEMY</h2>
-  <p class="text-center">
-    En <strong>AkiraCode Academy</strong> creemos que la programación no es solo una habilidad, 
-    sino un camino de disciplina y creatividad, al estilo de las grandes historias de anime.  
-    Nuestra academia combina la pasión por la <strong>informática</strong> con la energía del 
-    <strong>universo anime</strong>, formando desarrolladores que piensan como estrategas y crean como héroes.  
+  <h2 class="text-center mb-4" style="color: #00ff88;">ACERCA DE HACKING MOBILE LAB</h2>
+  <p class="text-center" style="color: #ffffff;">
+    En <strong style="color: #00ff88;">Hacking Mobile Lab</strong> creemos que la seguridad móvil no es solo una técnica, 
+    sino una disciplina que requiere metodología y ética.  
+    Nuestro laboratorio combina la <strong>investigación avanzada</strong> con el 
+    <strong>hacking ético</strong>, formando especialistas que protegen dispositivos y detectan vulnerabilidades.  
   </p>
 </div>
 
@@ -25,37 +25,37 @@
 <div class="container mt-5">
   <div class="row text-center">
     <div class="col-sm-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Misión</h5>
+      <div class="card h-100 shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body text-white">
+          <h5 class="card-title" style="color: #00ff88;">Misión</h5>
           <p class="card-text">
-            Forjar a la próxima generación de <strong>guerreros del código</strong>, brindando 
-            conocimientos en programación, diseño y tecnología de manera didáctica, divertida 
-            y con un enfoque innovador inspirado en el anime.
+            Formar a la próxima generación de <strong>investigadores en seguridad móvil</strong>, 
+            proporcionando conocimientos en pentesting, análisis forense y protección de dispositivos 
+            con un enfoque ético y metodológico riguroso.
           </p>
         </div>
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Visión</h5>
+      <div class="card h-100 shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body text-white">
+          <h5 class="card-title" style="color: #00ff88;">Visión</h5>
           <p class="card-text">
-            Ser reconocidos como una academia donde aprender a programar se convierta en una 
-            <strong>aventura épica</strong>. Un lugar en el que cada estudiante sea protagonista 
-            de su propia historia tecnológica, listo para conquistar el futuro digital.
+            Ser reconocidos como un centro de referencia en <strong>investigación de seguridad móvil</strong>, 
+            donde cada analista se convierta en un especialista capaz de anticipar y neutralizar 
+            amenazas en el ecosistema móvil digital.
           </p>
         </div>
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Objetivo</h5>
+      <div class="card h-100 shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body text-white">
+          <h5 class="card-title" style="color: #00ff88;">Objetivo</h5>
           <p class="card-text">
-            Ofrecer formación en <strong>JavaScript, Python, Bootstrap y más</strong>, integrando 
-            recursos modernos y prácticos, de forma que los alumnos no solo adquieran conocimientos, 
-            sino que vivan una experiencia única de aprendizaje con estilo anime.
+            Ofrecer formación especializada en <strong>Android Security, iOS Research, Forensic Analysis</strong> 
+            y más, integrando herramientas profesionales y metodologías actuales para formar 
+            expertos en ciberseguridad móvil.
           </p>
         </div>
       </div>
@@ -65,45 +65,88 @@
 
 <!-- Valores -->
 <div class="container mt-5">
-  <h2 class="text-center mb-4">NUESTROS VALORES</h2>
+  <h2 class="text-center mb-4" style="color: #00ff88;">NUESTROS PRINCIPIOS</h2>
   <div class="row text-center">
     <div class="col-sm-3">
-      <div class="card shadow-sm">
-        <img src="{{ url_for('static', filename='innovacion.jpg') }}" class="card-img-top" alt="Innovación">
-        <div class="card-body">
-          <h5 class="card-title">Innovación</h5>
-          <p class="card-text">Como los héroes de anime, creemos en superar límites y crear nuevas soluciones.</p>
+      <div class="card shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <img src="{{ url_for('static', filename='ethical-hacking.png') }}" class="card-img-top" alt="Hacking Ético" style="height: 150px; object-fit: cover;">
+        <div class="card-body text-white">
+          <h5 class="card-title" style="color: #00ff88;">Ética Profesional</h5>
+          <p class="card-text">Siempre dentro del marco legal y con autorización. La seguridad primero.</p>
         </div>
       </div>
     </div>
     <div class="col-sm-3">
-      <div class="card shadow-sm">
-        <img src="{{ url_for('static', filename='compromiso.jpg') }}" class="card-img-top" alt="Compromiso">
-        <div class="card-body">
-          <h5 class="card-title">Compromiso</h5>
-          <p class="card-text">Acompañamos a cada estudiante en su camino ninja hacia la maestría del código.</p>
+      <div class="card shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <img src="{{ url_for('static', filename='research.png') }}" class="card-img-top" alt="Investigación" style="height: 150px; object-fit: cover;">
+        <div class="card-body text-white">
+          <h5 class="card-title" style="color: #00ff88;">Investigación Rigurosa</h5>
+          <p class="card-text">Metodología científica aplicada al análisis de seguridad móvil.</p>
         </div>
       </div>
     </div>
     <div class="col-sm-3">
-      <div class="card shadow-sm">
-        <img src="{{ url_for('static', filename='accesibilidad.jpg') }}" class="card-img-top" alt="Accesibilidad">
-        <div class="card-body">
-          <h5 class="card-title">Accesibilidad</h5>
-          <p class="card-text">Un dojo digital donde todos son bienvenidos a entrenar sus habilidades.</p>
+      <div class="card shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <img src="{{ url_for('static', filename='confidentiality.png') }}" class="card-img-top" alt="Confidencialidad" style="height: 150px; object-fit: cover;">
+        <div class="card-body text-white">
+          <h5 class="card-title" style="color: #00ff88;">Confidencialidad</h5>
+          <p class="card-text">Protección absoluta de datos y hallazgos de investigación.</p>
         </div>
       </div>
     </div>
     <div class="col-sm-3">
-      <div class="card shadow-sm">
-        <img src="{{ url_for('static', filename='eficiencia.jpg') }}" class="card-img-top" alt="Eficiencia">
-        <div class="card-body">
-          <h5 class="card-title">Eficiencia</h5>
-          <p class="card-text">Aprender rápido, practicar fuerte y aplicar el conocimiento con confianza.</p>
+      <div class="card shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <img src="{{ url_for('static', filename='innovation.png') }}" class="card-img-top" alt="Innovación" style="height: 150px; object-fit: cover;">
+        <div class="card-body text-white">
+          <h5 class="card-title" style="color: #00ff88;">Innovación Continua</h5>
+          <p class="card-text">Siempre a la vanguardia de las técnicas y herramientas de seguridad.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Especialidades -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4" style="color: #00ff88;">ÁREAS DE ESPECIALIZACIÓN</h2>
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body text-white">
+          <i class="bi bi-phone" style="font-size: 3rem; color: #00ff88;"></i>
+          <h5 class="card-title mt-3" style="color: #00ff88;">Android Security</h5>
+          <p class="card-text">Pentesting, análisis de APKs, rooting y custom ROMs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body text-white">
+          <i class="bi bi-apple" style="font-size: 3rem; color: #00ff88;"></i>
+          <h5 class="card-title mt-3" style="color: #00ff88;">iOS Research</h5>
+          <p class="card-text">Jailbreak, análisis de binarios, sandbox escape.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm" style="background-color: #16213e; border: 1px solid #00ff88;">
+        <div class="card-body text-white">
+          <i class="bi bi-shield-check" style="font-size: 3rem; color: #00ff88;"></i>
+          <h5 class="card-title mt-3" style="color: #00ff88;">Mobile Forensics</h5>
+          <p class="card-text">Recuperación de datos, análisis de evidencias digitales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    transition: transform 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+</style>
 
 {% endblock %}

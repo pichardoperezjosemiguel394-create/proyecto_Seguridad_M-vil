@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block titulo %} LOGIN {% endblock %}
+{% block titulo %} LOGIN - HACKING MOBILE {% endblock %}
 
 {% block contenido %}
 
@@ -21,31 +21,31 @@
 {% endwith %}
 
 
-<div class="container-fluid vh-100" style="background: linear-gradient(135deg, #d8d8d8, #7a7a7a);">
+<div class="container-fluid vh-100" style="background: linear-gradient(135deg, #0c0c0c, #1a1a2e);">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
-                <div class="card shadow-lg" style="border-radius: 1rem; background-color: #9acfcd;">
+                <div class="card shadow-lg" style="border-radius: 1rem; background-color: #16213e; border: 1px solid #00ff88;">
                     <div class="row g-0">
 
                         <!-- Panel izquierdo -->
                         <div class="col-md-6 col-lg-5 d-none d-md-flex h-100">
                             <div class="card-body d-flex flex-column justify-content-center align-items-center p-4 p-md-5 text-white"
-                                 style="background: linear-gradient(135deg, #5078fa, #223bfc); border-radius: 1rem 0 0 1rem; height: 100%; width: 100%;">
+                                 style="background: linear-gradient(135deg, #0d7377, #14ffec); border-radius: 1rem 0 0 1rem; height: 100%; width: 100%;">
                                 <div class="mb-4">
-                                    <img src="{{ url_for('static', filename='inicio.png') }}" alt="Imagen Panel"
+                                    <img src="{{ url_for('static', filename='hacking-icon.png') }}" alt="Hacking Mobile"
                                          style="width: 200px; height: 200px; object-fit: cover;">
                                 </div>
-                                <h2 class="fw-bold mb-4 text-center">Bienvenido Nuevamente!</h2>
-                                <p class="mb-5 text-center">Si aún no tienes una cuenta, regístrate aquí</p>
+                                <h2 class="fw-bold mb-4 text-center">¡Acceso al Sistema!</h2>
+                                <p class="mb-5 text-center">¿Nuevo en hacking móvil? Regístrate como investigador</p>
                                 <a href="{{ url_for('Registro') }}" class="btn btn-lg btn-register">Registrarse</a>
                             </div>
                         </div>
 
                         <!-- Panel derecho -->
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                            <div class="card-body p-4 p-lg-5 text-dark">
-                                <h2 class="fw-bold mb-4 text-center">Iniciar Sesión</h2>
+                            <div class="card-body p-4 p-lg-5 text-white">
+                                <h2 class="fw-bold mb-4 text-center" style="color: #00ff88;">Acceso Seguro</h2>
 
                                 {% if error %}
                                 <div class="alert alert-danger text-center">
@@ -58,27 +58,31 @@
                                     <button class="btn btn-lg d-flex align-items-center justify-content-center btn-google" type="button">
                                         <img src="{{ url_for('static', filename='googleicon.png') }}" alt="Google"
                                              style="width: 20px; height: 20px; margin-right: 10px;">
-                                        Iniciar sesión con Google
+                                        Acceso con Google
                                     </button>
                                 </div>
 
                                 <!-- Separador -->
                                 <div class="d-flex justify-content-center my-4">
-                                    <p class="fw-bold mb-0 text-center text-muted">o Usar tu email para registrarte</p>
+                                    <p class="fw-bold mb-0 text-center" style="color: #14ffec;">o Autenticación Local</p>
                                 </div>
 
                                 <!-- Formulario de login -->
                                 <form action="{{ url_for('accesologin') }}" method="POST">
                                     <div class="form-outline mb-4">
                                         <input type="email" name="email" class="form-control form-control-lg"
-                                               placeholder="Correo electrónico" required />
+                                               placeholder="Correo electrónico" 
+                                               style="background-color: #1a1a2e; color: white; border: 1px solid #00ff88;" 
+                                               required />
                                     </div>
                                     <div class="form-outline mb-4">
                                         <input type="password" name="password" class="form-control form-control-lg"
-                                               placeholder="Contraseña" required />
+                                               placeholder="Contraseña" 
+                                               style="background-color: #1a1a2e; color: white; border: 1px solid #00ff88;" 
+                                               required />
                                     </div>
                                     <div class="d-grid">
-                                        <button class="btn btn-lg btn-login" type="submit">Iniciar Sesión</button>
+                                        <button class="btn btn-lg btn-login" type="submit">Acceder al Sistema</button>
                                     </div>
                                 </form>
                             </div>
@@ -94,35 +98,61 @@
 <style>
 /* Botón Registrarse */
 .btn-register {
-    background-color: #28a745 !important;
-    color: white !important;
+    background: linear-gradient(135deg, #00ff88, #14ffec) !important;
+    color: #0c0c0c !important;
+    border: none !important;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.1s ease-in-out;
+    transition: all 0.3s ease;
 }
-.btn-register:active { transform: scale(0.95); }
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+}
 
 /* Botón Google */
 .btn-google {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
+    background-color: #1a1a2e !important;
+    color: #ffffff !important;
+    border: 1px solid #00ff88 !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.1s ease-in-out;
+    transition: all 0.3s ease;
 }
 .btn-google img { margin-right: 10px; }
-.btn-google:active { transform: scale(0.95); }
+.btn-google:hover {
+    background-color: #00ff88 !important;
+    color: #0c0c0c !important;
+    transform: translateY(-2px);
+}
 
 /* Botón Iniciar Sesión */
 .btn-login {
-    background: linear-gradient(135deg, #177af3, #3c4ff3) !important;
-    color: white !important;
+    background: linear-gradient(135deg, #0d7377, #00ff88) !important;
+    color: #0c0c0c !important;
     border: none !important;
-    transition: transform 0.1s ease-in-out;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
-.btn-login:active { transform: scale(0.95); }
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+}
+
+/* Placeholder color */
+.form-control::placeholder {
+    color: #8f8f8f !important;
+}
+
+/* Focus states */
+.form-control:focus {
+    background-color: #1a1a2e !important;
+    color: white !important;
+    border-color: #14ffec !important;
+    box-shadow: 0 0 0 0.2rem rgba(20, 255, 236, 0.25) !important;
+}
 </style>
 {% endblock %}

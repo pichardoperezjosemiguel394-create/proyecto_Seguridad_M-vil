@@ -1,93 +1,107 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Inicio{% endblock %}
+{% block titulo %}Laboratorio de Seguridad Móvil{% endblock %}
 
 {% block contenido %}
 
-<!-- Carousel -->
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{ url_for('static', filename='imagen1.jpg') }}" class="d-block w-100" alt="...">
+<!-- Carrusel Mejorado -->
+<div id="carouselHero" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2"></button>
+  </div>
+  <div class="carousel-inner rounded-3 shadow-lg">
+    <div class="carousel-item active position-relative">
+      <img src="{{ url_for('static', filename='mobile-security-1.jpg') }}" class="d-block w-100" alt="Análisis de Seguridad Android" style="height: 450px; object-fit: cover;">
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-4">
+        <h3 class="fw-bold" style="color: #00ff88;">Hacking Ético Android</h3>
+        <p class="fs-5">Domina las técnicas de seguridad ofensiva en dispositivos móviles</p>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="{{ url_for('static', filename='imagen2.jpg') }}" class="d-block w-100" alt="...">
+    <div class="carousel-item position-relative">
+      <img src="{{ url_for('static', filename='ios-research-2.jpg') }}" class="d-block w-100" alt="Investigación iOS" style="height: 450px; object-fit: cover;">
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-4">
+        <h3 class="fw-bold" style="color: #00ff88;">Investigación iOS</h3>
+        <p class="fs-5">Especialízate en el análisis de seguridad de ecosistemas Apple</p>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="{{ url_for('static', filename='imagen3.jpg') }}" class="d-block w-100" alt="...">
+    <div class="carousel-item position-relative">
+      <img src="{{ url_for('static', filename='forensic-analysis-3.jpg') }}" class="d-block w-100" alt="Análisis Forense Móvil" style="height: 450px; object-fit: cover;">
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-4">
+        <h3 class="fw-bold" style="color: #00ff88;">Análisis Forense Móvil</h3>
+        <p class="fs-5">Recupera y analiza evidencias digitales en dispositivos móviles</p>
+      </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
     <span class="visually-hidden">Anterior</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
     <span class="visually-hidden">Siguiente</span>
   </button>
 </div>
 
 <!-- Información -->
 <div class="container mt-5">
-  <h2 class="text-center mb-4">INFORMACIÓN</h2>
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Curso de JavaScript</h5>
-          <p class="card-text">JavaScript es el lenguaje que da vida a las páginas web, permitiendo crear sitios
-            interactivos y dinámicos. En este curso aprenderás a:
-
-            Manipular contenido HTML y CSS en tiempo real.
-
-            Validar formularios y manejar eventos del usuario.
-
-            Crear animaciones y efectos visuales.
-
-            Conectar tu sitio con servidores usando AJAX.
-
-            Desarrollar pequeñas aplicaciones y juegos web.</p>
-          <p class="card-text">Este curso es ideal para quienes quieren transformar ideas en aplicaciones web
-            funcionales y mejorar la experiencia del usuario. No se requiere experiencia previa, y al finalizar estarás
-            listo para crear proyectos interactivos y profesionales.</p>
+  <h2 class="text-center mb-4" style="color: #00ff88;">ESPECIALIZACIONES</h2>
+  <div class="row g-4">
+    <div class="col-lg-4 col-md-6">
+      <div class="card shadow-lg h-100" style="background: linear-gradient(135deg, #16213e, #1a237e); border: 2px solid #00ff88; border-radius: 15px;">
+        <div class="card-body text-white p-4">
+          <div class="text-center mb-3">
+            <i class="fas fa-android fa-3x" style="color: #00ff88;"></i>
+          </div>
+          <h5 class="card-title text-center mb-3" style="color: #00ff88;">Hacking Ético Android</h5>
+          <p class="card-text">El hacking ético en Android es esencial para proteger millones de dispositivos. En este programa aprenderás a:</p>
+          <ul class="list-unstyled">
+            <li class="mb-2">✓ Analizar vulnerabilidades en aplicaciones y sistemas Android</li>
+            <li class="mb-2">✓ Realizar pentesting de aplicaciones móviles</li>
+            <li class="mb-2">✓ Técnicas de rooting y custom ROMs para testing</li>
+            <li class="mb-2">✓ Análisis de APKs y reverse engineering</li>
+            <li class="mb-2">✓ Detección y explotación de vulnerabilidades</li>
+          </ul>
+          <p class="card-text mt-3">Este programa es ideal para quienes quieren especializarse en seguridad móvil y proteger aplicaciones contra amenazas reales.</p>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Curso de Bootstrap</h5>
-          <p class="card-text">Bootstrap es el framework más popular para diseñar sitios web responsivos y modernos de
-            manera rápida y eficiente. En este curso aprenderás a:
-
-            Usar grids y sistemas de columnas para crear diseños adaptables.
-
-            Diseñar botones, formularios, menús de navegación y tarjetas predefinidas.
-
-            Aplicar estilos y componentes listos para construir páginas profesionales.
-
-            Integrar HTML, CSS y JavaScript para interfaces interactivas.</p>
-          <p class="card-text">Ideal para quienes quieren crear páginas web atractivas y funcionales sin escribir todo
-            el código desde cero.</p>
+    <div class="col-lg-4 col-md-6">
+      <div class="card shadow-lg h-100" style="background: linear-gradient(135deg, #16213e, #1a237e); border: 2px solid #00ff88; border-radius: 15px;">
+        <div class="card-body text-white p-4">
+          <div class="text-center mb-3">
+            <i class="fab fa-apple fa-3x" style="color: #00ff88;"></i>
+          </div>
+          <h5 class="card-title text-center mb-3" style="color: #00ff88;">Investigación iOS</h5>
+          <p class="card-text">La investigación en seguridad iOS requiere metodologías especializadas para analizar sistemas cerrados. En este programa aprenderás a:</p>
+          <ul class="list-unstyled">
+            <li class="mb-2">✓ Técnicas de jailbreak y análisis de sistemas iOS</li>
+            <li class="mb-2">✓ Investigación de binarios y aplicaciones nativas</li>
+            <li class="mb-2">✓ Análisis del sandbox y técnicas de escape</li>
+            <li class="mb-2">✓ Pentesting de aplicaciones iOS empresariales</li>
+            <li class="mb-2">✓ Metodologías de investigación forense</li>
+          </ul>
+          <p class="card-text mt-3">Ideal para investigadores que desean profundizar en la seguridad de ecosistemas iOS.</p>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Curso de Python</h5>
-          <p class="card-text">Python es uno de los lenguajes de programación más versátiles y fáciles de aprender. En
-            este curso aprenderás a:
-
-            Escribir código limpio y eficiente para resolver problemas prácticos.
-
-            Automatizar tareas y procesos repetitivos.
-
-            Trabajar con datos, crear gráficos y análisis.
-
-            Desarrollar aplicaciones web, bots o proyectos de inteligencia artificial.</p>
-          <p class="card-text">Perfecto para principiantes o quienes quieren expandir sus habilidades en programación y
-            desarrollar soluciones efectivas.</p>
+    <div class="col-lg-4 col-md-6">
+      <div class="card shadow-lg h-100" style="background: linear-gradient(135deg, #16213e, #1a237e); border: 2px solid #00ff88; border-radius: 15px;">
+        <div class="card-body text-white p-4">
+          <div class="text-center mb-3">
+            <i class="fas fa-search fa-3x" style="color: #00ff88;"></i>
+          </div>
+          <h5 class="card-title text-center mb-3" style="color: #00ff88;">Forensic Mobile</h5>
+          <p class="card-text">El análisis forense móvil es crucial para investigaciones digitales. En este programa aprenderás a:</p>
+          <ul class="list-unstyled">
+            <li class="mb-2">✓ Recuperación y análisis de evidencias digitales</li>
+            <li class="mb-2">✓ Técnicas de extracción de datos en dispositivos bloqueados</li>
+            <li class="mb-2">✓ Análisis de aplicaciones de mensajería y redes sociales</li>
+            <li class="mb-2">✓ Investigación de metadatos y huellas digitales</li>
+            <li class="mb-2">✓ Herramientas profesionales de forensic móvil</li>
+          </ul>
+          <p class="card-text mt-3">Perfecto para profesionales de la investigación que necesitan especializarse en evidencias digitales.</p>
         </div>
       </div>
     </div>
@@ -96,49 +110,78 @@
 
 <!-- Servicios -->
 <div class="container mt-5">
-  <h2 class="text-center mb-4">SERVICIOS</h2>
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card h-100 shadow-sm">
-        <img src="{{ url_for('static', filename='imagen4.png') }}" class="card-img-top" alt="Web">
-        <div class="card-body">
-          <h5 class="card-title">Curso de JavaScript </h5>
-          <p class="card-text">Aprende a dominar JavaScript, el lenguaje que da vida a las páginas web. En este curso
-            descubrirás cómo crear sitios interactivos, animaciones, validar formularios y conectar tu web con
-            servidores, todo mientras mejoras la experiencia del usuario. Ideal para quienes quieren transformar ideas
-            en aplicaciones web dinámicas y funcionales.</p>
-          <a href="#" class="btn btn-primary">Ver más</a>
+  <h2 class="text-center mb-4" style="color: #00ff88;">PROGRAMAS DE FORMACIÓN</h2>
+  <div class="row g-4">
+    <div class="col-lg-4 col-md-6">
+      <div class="card h-100 shadow-lg" style="background: linear-gradient(135deg, #16213e, #1a237e); border: 2px solid #00ff88; border-radius: 15px;">
+        <img src="{{ url_for('static', filename='android-pentesting.jpg') }}" class="card-img-top" alt="Android Pentesting" style="height: 200px; object-fit: cover; border-top-left-radius: 13px; border-top-right-radius: 13px;">
+        <div class="card-body text-white d-flex flex-column">
+          <h5 class="card-title text-center mb-3" style="color: #00ff88;">Pentesting Android</h5>
+          <p class="card-text flex-grow-1">Domina las técnicas de penetration testing especializado en dispositivos Android. Aprende a identificar vulnerabilidades, explotar fallos de seguridad y proteger aplicaciones contra ataques reales.</p>
+          <div class="mt-auto text-center">
+            <a href="#" class="btn btn-lg shadow" style="background: linear-gradient(135deg, #00ff88, #14ffec); color: #0c0c0c; border: none; font-weight: bold; border-radius: 25px; padding: 10px 30px;">Acceder al Programa</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="card h-100 shadow-sm">
-        <img src="{{ url_for('static', filename='imagen5.jpg') }}" class="card-img-top" alt="Productos">
-        <div class="card-body">
-          <h5 class="card-title">Curso de Bootstrap</h5>
-          <p class="card-text">Aprende a crear sitios web modernos y responsivos con Bootstrap, el framework más popular
-            para diseño web. En este curso descubrirás cómo usar grids, botones, formularios y menús de navegación,
-            aprovechando componentes predefinidos para desarrollar páginas atractivas y funcionales sin escribir todo el
-            código desde cero. Ideal para quienes quieren diseñar interfaces profesionales de forma rápida y eficiente.
-          </p>
-          <a href="#" class="btn btn-primary">Ver más</a>
+    <div class="col-lg-4 col-md-6">
+      <div class="card h-100 shadow-lg" style="background: linear-gradient(135deg, #16213e, #1a237e); border: 2px solid #00ff88; border-radius: 15px;">
+        <img src="{{ url_for('static', filename='ios-security.jpg') }}" class="card-img-top" alt="iOS Security" style="height: 200px; object-fit: cover; border-top-left-radius: 13px; border-top-right-radius: 13px;">
+        <div class="card-body text-white d-flex flex-column">
+          <h5 class="card-title text-center mb-3" style="color: #00ff88;">Seguridad iOS</h5>
+          <p class="card-text flex-grow-1">Especialízate en la investigación de seguridad en sistemas iOS. Aprende técnicas de jailbreak, análisis de binarios, escape del sandbox y pentesting de aplicaciones empresariales.</p>
+          <div class="mt-auto text-center">
+            <a href="#" class="btn btn-lg shadow" style="background: linear-gradient(135deg, #00ff88, #14ffec); color: #0c0c0c; border: none; font-weight: bold; border-radius: 25px; padding: 10px 30px;">Acceder al Programa</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="card h-100 shadow-sm">
-        <img src="{{ url_for('static', filename='imagen6.jpg') }}" class="card-img-top" alt="Cursos">
-        <div class="card-body">
-          <h5 class="card-title">Curso de Python</h5>
-          <p class="card-text">Aprende Python, uno de los lenguajes de programación más populares y versátiles. En este
-            curso descubrirás cómo crear aplicaciones, automatizar tareas, trabajar con datos y desarrollar proyectos
-            web o de inteligencia artificial. Ideal para quienes quieren iniciar su camino en programación y desarrollar
-            soluciones prácticas y eficientes.</p>
-          <a href="#" class="btn btn-primary">Ver más</a>
+    <div class="col-lg-4 col-md-6">
+      <div class="card h-100 shadow-lg" style="background: linear-gradient(135deg, #16213e, #1a237e); border: 2px solid #00ff88; border-radius: 15px;">
+        <img src="{{ url_for('static', filename='mobile-forensic.jpg') }}" class="card-img-top" alt="Mobile Forensic" style="height: 200px; object-fit: cover; border-top-left-radius: 13px; border-top-right-radius: 13px;">
+        <div class="card-body text-white d-flex flex-column">
+          <h5 class="card-title text-center mb-3" style="color: #00ff88;">Análisis Forense</h5>
+          <p class="card-text flex-grow-1">Conviértete en experto en análisis forense de dispositivos móviles. Aprende técnicas de recuperación de datos, análisis de evidencias digitales e investigación de aplicaciones.</p>
+          <div class="mt-auto text-center">
+            <a href="#" class="btn btn-lg shadow" style="background: linear-gradient(135deg, #00ff88, #14ffec); color: #0c0c0c; border: none; font-weight: bold; border-radius: 25px; padding: 10px 30px;">Acceder al Programa</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .card {
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2) !important;
+  }
+  
+  .carousel-item img {
+    filter: brightness(0.7);
+  }
+  
+  .carousel-caption {
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-size: 1.5rem;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+    transition: all 0.3s ease;
+  }
+</style>
+
+<!-- Agregar Font Awesome para íconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 {% endblock %}
