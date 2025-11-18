@@ -30,7 +30,7 @@ mysql = MySQL(app)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# ----------------- FUNCIONES DE ENCRIPTACIÓN -----------------
+# ----------------- FUNCIONES DE ENCRIPTACIÓN DE contrase;a -----------------
 def encriptar_password(password):
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
