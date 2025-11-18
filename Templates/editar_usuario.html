@@ -248,7 +248,10 @@
                                     title="Correo electrónico">Correo</th>
                                 <th class="text-white" style="background: #34495e !important;"
                                     data-bs-toggle="tooltip" data-bs-placement="top" 
-                                    title="Contraseña (encriptada)">Contraseña</th>
+                                    title="Fecha de creación">Creado</th>
+                                <th class="text-white" style="background: #34495e !important;"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" 
+                                    title="Última actualización">Actualizado</th>
                                 <th class="text-white" style="background: #34495e !important;"
                                     data-bs-toggle="tooltip" data-bs-placement="top" 
                                     title="Rol del usuario en el sistema">Rol</th>
@@ -268,7 +271,13 @@
                                 <td data-bs-toggle="tooltip" data-bs-placement="top" 
                                     title="Email: {{ u.email }}">{{ u.email }}</td>
                                 <td data-bs-toggle="tooltip" data-bs-placement="top" 
-                                    title="Contraseña encriptada">{{ u.password }}</td>
+                                    title="Fecha de creación: {{ u.fecha_creacion }}">
+                                    <small class="text-muted">{{ u.fecha_creacion.strftime('%d/%m/%Y %H:%M') if u.fecha_creacion else 'N/A' }}</small>
+                                </td>
+                                <td data-bs-toggle="tooltip" data-bs-placement="top" 
+                                    title="Última actualización: {{ u.fecha_actualizacion }}">
+                                    <small class="text-muted">{{ u.fecha_actualizacion.strftime('%d/%m/%Y %H:%M') if u.fecha_actualizacion else 'N/A' }}</small>
+                                </td>
                                 <td>
                                     {% if u.id_rol == 1 %}
                                     <span class="badge bg-danger"
@@ -296,7 +305,7 @@
                                 </td>
                             </tr>
                             <tr class="collapse" id="editar{{ u.id }}" style="background: #f8f9fa;">
-                                <td colspan="6">
+                                <td colspan="7">
                                     <form method="POST" class="update-user-form">
                                         <input type="hidden" name="id" value="{{ u.id }}">
                                         <input type="hidden" name="editar_usuario" value="1">
@@ -313,13 +322,13 @@
                                                        data-bs-toggle="tooltip" data-bs-placement="top" 
                                                        title="Nuevo correo para {{ u.email }}">
                                             </div>
-                                            <div class="col-md-3 mb-2">
+                                            <div class="col-md-2 mb-2">
                                                 <input type="text" name="password" class="form-control" 
                                                        style="background: white; border: 1px solid #bdc3c7; color: #2c3e50;" value="{{ u.password }}" required
                                                        data-bs-toggle="tooltip" data-bs-placement="top" 
                                                        title="Nueva contraseña (se encriptará automáticamente)">
                                             </div>
-                                            <div class="col-md-3 mb-2">
+                                            <div class="col-md-2 mb-2">
                                                 <select name="id_rol" class="form-control" style="background: white; border: 1px solid #bdc3c7; color: #2c3e50;"
                                                         data-bs-toggle="tooltip" data-bs-placement="top" 
                                                         title="Seleccionar rol del usuario">
@@ -327,13 +336,15 @@
                                                     <option value="2" {% if u.id_rol == 2 %}selected{% endif %}>Usuario</option>
                                                 </select>
                                             </div>
+                                            <div class="col-md-2 mb-2">
+                                                <button type="submit" class="btn btn-primary btn-sm w-100 update-user-btn" 
+                                                        style="border: none; font-weight: bold;"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" 
+                                                        title="Guardar cambios para {{ u.nombre }}">
+                                                    Actualizar
+                                                </button>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-sm mt-1 update-user-btn" 
-                                                style="border: none; font-weight: bold;"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" 
-                                                title="Guardar cambios para {{ u.nombre }}">
-                                            Actualizar
-                                        </button>
                                     </form>
                                 </td>
                             </tr>

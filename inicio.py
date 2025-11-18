@@ -4,11 +4,12 @@ import os
 import time
 from werkzeug.utils import secure_filename
 import bcrypt
-import hashlib  # <-- AGREGAR ESTA IMPORTACIÓN
+import hashlib
+from datetime import datetime
 
 # Inicializamos la aplicación Flask
 app = Flask(__name__, template_folder="Templates", static_folder="Static")
-app.secret_key = '09f78ead-8a13-11f0-9f04-089798bc6dda'  # Clave secreta para la sesión
+app.secret_key = '09f78ead-8a13-11f0-9f04-089798bc6dda'
 
 # ----------------- CONEXIÓN A MYSQL CLEVER CLOUD -----------------
 app.config['MYSQL_HOST'] = 'btmfogckn3sqq1kqc0r0-mysql.services.clever-cloud.com'
@@ -16,45 +17,36 @@ app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'u9cseiqaxtklybvx'
 app.config['MYSQL_PASSWORD'] = '0nMxe8SZ3ZostJgVW2ag'
 app.config['MYSQL_DB'] = 'btmfogckn3sqq1kqc0r0'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'  # Usar DictCursor globalmente
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # Configuración para uploads de imágenes
 UPLOAD_FOLDER = 'static/img'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # 2MB máximo
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 
-mysql = MySQL(app)  # Inicializamos MySQL con la app
+mysql = MySQL(app)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # ----------------- FUNCIONES DE ENCRIPTACIÓN -----------------
 def encriptar_password(password):
-    """Encripta una contraseña usando bcrypt"""
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
     return hashed.decode('utf-8')
 
 def verificar_password(password_plana, password_encriptada):
-    """Verifica si una contraseña plana coincide con la encriptada"""
-    # Si la contraseña está en texto plano (como el admin2)
     if password_plana == password_encriptada:
         return True
-    
-    # Si es SHA256 (64 caracteres hexadecimales)
     elif len(password_encriptada) == 64:
         hash_ingresado = hashlib.sha256(password_plana.encode('utf-8')).hexdigest()
         return hash_ingresado == password_encriptada
-    
-    # Si es bcrypt (empieza con $2b$)
     elif password_encriptada.startswith('$2b$'):
         try:
             return bcrypt.checkpw(password_plana.encode('utf-8'), password_encriptada.encode('utf-8'))
         except:
             return False
-    
-    # Si no coincide con ningún formato
     else:
         return False
 
@@ -101,14 +93,13 @@ def accesologin():
         session['usuario'] = user['email']
         session['nombre'] = user['nombre']
         session['rol'] = user['id_rol']
-        session['id'] = user['id']  # ID del usuario
+        session['id'] = user['id']
         session['email'] = user['email']
 
-        # Cargar foto de perfil si existe
         if user.get('foto_perfil'):
             session['foto_perfil'] = user['foto_perfil']
         else:
-            session['foto_perfil'] = 'img/user.png'  # Valor por defecto
+            session['foto_perfil'] = 'img/user.png'
 
         if user['id_rol'] == 1:
             return redirect(url_for('admin'))
@@ -125,9 +116,8 @@ def Registro():
         nombre = request.form.get('nombre')
         email = request.form.get('email')
         password = request.form.get('password')
-        id_rol = 2  # Rol usuario por defecto
+        id_rol = 2
 
-        # Encriptar contraseña
         password_encriptada = encriptar_password(password)
 
         cur = mysql.connection.cursor()
@@ -171,9 +161,8 @@ def listar():
         nombre = request.form['nombre']
         email = request.form['email']
         password = request.form['password']
-        id_rol = 2  # Rol por defecto
+        id_rol = 2
 
-        # Encriptar contraseña
         password_encriptada = encriptar_password(password)
 
         cur.execute("INSERT INTO usuario (nombre, email, password, id_rol) VALUES (%s, %s, %s, %s)",
@@ -190,13 +179,11 @@ def listar():
         email = request.form['email']
         password = request.form['password']
 
-        # Solo encriptar si se cambió la contraseña y no está ya encriptada
         if password and not password.startswith('$2b$') and len(password) != 64:
             password_encriptada = encriptar_password(password)
             cur.execute("UPDATE usuario SET nombre=%s, email=%s, password=%s WHERE id=%s",
                         (nombre, email, password_encriptada, user_id))
         else:
-            # Mantener la contraseña actual
             cur.execute("UPDATE usuario SET nombre=%s, email=%s WHERE id=%s",
                         (nombre, email, user_id))
         
@@ -219,6 +206,22 @@ def listar():
     usuarios = cur.fetchall()
     cur.close()
 
+    # CONVERTIR FECHAS - CORRECCIÓN: usar fecha_creacion y fecha_actualizacion
+    for usuario in usuarios:
+        if 'fecha_creacion' in usuario and usuario['fecha_creacion']:
+            try:
+                usuario['fecha_creacion'] = datetime.strptime(str(usuario['fecha_creacion']), '%Y-%m-%d %H:%M:%S')
+            except Exception as e:
+                print(f"Error convirtiendo fecha_creacion: {e}")
+                pass
+        
+        if 'fecha_actualizacion' in usuario and usuario['fecha_actualizacion']:
+            try:
+                usuario['fecha_actualizacion'] = datetime.strptime(str(usuario['fecha_actualizacion']), '%Y-%m-%d %H:%M:%S')
+            except Exception as e:
+                print(f"Error convirtiendo fecha_actualizacion: {e}")
+                pass
+
     return render_template("editar_usuario.html",
                            usuario=session['usuario'],
                            usuarios=usuarios)
@@ -231,7 +234,6 @@ def cambiar_foto_perfil():
         return redirect(url_for('login'))
     
     try:
-        # Procesar foto predefinida
         foto_predefinida = request.form.get('foto_predefinida')
         if foto_predefinida:
             cur = mysql.connection.cursor()
@@ -243,33 +245,26 @@ def cambiar_foto_perfil():
             flash('Foto de perfil actualizada correctamente', 'success')
             return redirect(url_for('listar'))
         
-        # Procesar foto subida
         file = request.files.get('foto')
         if file and file.filename:
             if allowed_file(file.filename):
-                # Crear directorio si no existe
                 if not os.path.exists(app.config['UPLOAD_FOLDER']):
                     os.makedirs(app.config['UPLOAD_FOLDER'])
                 
-                # Generar nombre único para el archivo
                 file_extension = file.filename.rsplit('.', 1)[1].lower()
                 unique_filename = f"user_{session['id']}_{int(time.time())}.{file_extension}"
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
                 
-                # Guardar archivo
                 file.save(filepath)
                 
-                # Ruta para la base de datos
                 db_filepath = f"img/{unique_filename}"
                 
-                # Actualizar en la base de datos
                 cur = mysql.connection.cursor()
                 cur.execute("UPDATE usuario SET foto_perfil = %s WHERE id = %s", 
                            (db_filepath, session['id']))
                 mysql.connection.commit()
                 cur.close()
                 
-                # Actualizar sesión
                 session['foto_perfil'] = db_filepath
                 flash('Foto de perfil actualizada correctamente', 'success')
             else:
@@ -296,7 +291,6 @@ def actualizar_perfil():
                    (nombre, email, session['id']))
         mysql.connection.commit()
         
-        # Actualizar sesión
         session['nombre'] = nombre
         session['email'] = email
         session['usuario'] = email
@@ -319,14 +313,12 @@ def cambiar_password():
         nueva_password = request.form['nueva_password']
         confirmar_password = request.form['confirmar_password']
         
-        # Verificar contraseña actual
         cur = mysql.connection.cursor()
         cur.execute("SELECT password FROM usuario WHERE id = %s", (session['id'],))
         usuario = cur.fetchone()
         
         if usuario and verificar_password(password_actual, usuario['password']):
             if nueva_password == confirmar_password:
-                # Encriptar nueva contraseña
                 nueva_password_encriptada = encriptar_password(nueva_password)
                 
                 cur.execute("UPDATE usuario SET password = %s WHERE id = %s", 
@@ -357,7 +349,6 @@ def agregar_producto():
         precio = float(request.form['precio'])
         descripcion = request.form['descripcion']
 
-        # Insertar en MySQL
         cur = mysql.connection.cursor()
         cur.execute("""
             INSERT INTO productos (nombre, precio, descripcion)
@@ -369,7 +360,6 @@ def agregar_producto():
         flash('Técnica agregada correctamente!', 'success')
         return redirect(url_for('agregar_producto'))
 
-    # Obtener productos para mostrar en la tabla
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM productos ORDER BY id DESC")
     productos = cur.fetchall()
@@ -395,7 +385,6 @@ def listar_productos_agregados():
     if 'usuario' not in session:
         return redirect(url_for('login'))
         
-    # Obtener todos los productos
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM productos ORDER BY id DESC")
     productos = cur.fetchall()
@@ -403,7 +392,6 @@ def listar_productos_agregados():
     
     return render_template('Agregar_productos.html', productos=productos)
 
-# ----------------- LISTAR TODOS LOS PRODUCTOS -----------------
 @app.route('/listar_productos')
 def listar_productos():
     if 'usuario' not in session:
@@ -418,7 +406,6 @@ def listar_productos():
                          usuario=session['usuario'], 
                          productos=productos)
 
-# ----------------- RUTA PARA EDITAR PRODUCTO -----------------
 @app.route('/editar_producto/<int:id>', methods=['POST'])
 def editar_producto(id):
     if 'usuario' not in session:
@@ -426,7 +413,6 @@ def editar_producto(id):
         
     cur = mysql.connection.cursor()
     
-    # Revisar si la acción es eliminar
     accion = request.form.get('accion')
     if accion == 'eliminar':
         cur.execute("DELETE FROM productos WHERE id = %s", (id,))
@@ -435,12 +421,10 @@ def editar_producto(id):
         flash("Técnica eliminada correctamente!", "success")
         return redirect(url_for('listar_productos'))
 
-    # Si no es eliminar, se asume que es actualizar
     nombre = request.form['nombre']
     precio = float(request.form['precio'])
     descripcion = request.form['descripcion']
 
-    # Actualizar producto en la base de datos
     cur.execute("""
         UPDATE productos
         SET nombre=%s, precio=%s, descripcion=%s
@@ -452,7 +436,6 @@ def editar_producto(id):
     flash("Técnica actualizada correctamente!", "success")
     return redirect(url_for('listar_productos'))
 
-# ----------------- RUTA PARA ENCRIPTAR CONTRASEÑAS EXISTENTES -----------------
 @app.route('/encriptar_contraseñas', methods=['POST'])
 def encriptar_contraseñas():
     if 'usuario' not in session or session.get('rol') != 1:
@@ -462,7 +445,6 @@ def encriptar_contraseñas():
     try:
         cur = mysql.connection.cursor()
         
-        # Obtener todos los usuarios
         cur.execute("SELECT id, password FROM usuario")
         usuarios = cur.fetchall()
         
@@ -471,9 +453,7 @@ def encriptar_contraseñas():
         for usuario in usuarios:
             password_actual = usuario['password']
             
-            # Si no está encriptada con bcrypt, encriptar
             if not password_actual.startswith('$2b$'):
-                # Para texto plano o SHA256, usar "1234" como contraseña base
                 password_encriptada = encriptar_password("1234")
                 
                 cur.execute("UPDATE usuario SET password = %s WHERE id = %s", 
@@ -490,17 +470,14 @@ def encriptar_contraseñas():
     
     return redirect(url_for('listar'))
 
-# ----------------- ACERCA DE -----------------
 @app.route('/acercade')
 def acercade():
     return render_template("acercade.html")
 
-# ----------------- LOGOUT -----------------
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('inicio'))
 
-# ----------------- MAIN -----------------
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
