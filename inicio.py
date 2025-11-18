@@ -11,7 +11,7 @@ from datetime import datetime
 app = Flask(__name__, template_folder="Templates", static_folder="Static")
 app.secret_key = '09f78ead-8a13-11f0-9f04-089798bc6dda'
 
-# ----------------- CONEXIÓN A MYSQL CLEVER CLOUD -----------------
+# ----------------- CONEXIÓN A MYSQL CLEVER CLOUD mmmm-----------------
 app.config['MYSQL_HOST'] = 'btmfogckn3sqq1kqc0r0-mysql.services.clever-cloud.com'
 app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'u9cseiqaxtklybvx'
