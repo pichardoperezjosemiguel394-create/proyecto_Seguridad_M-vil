@@ -7,7 +7,7 @@ import bcrypt
 import hashlib  # <-- AGREGAR ESTA IMPORTACIÓN
 
 # Inicializamos la aplicación Flask
-app = Flask(__name__,template_folder="templates")
+app = Flask(__name__, template_folder="Templates", static_folder="Static")
 app.secret_key = '09f78ead-8a13-11f0-9f04-089798bc6dda'  # Clave secreta para la sesión
 
 # ----------------- CONEXIÓN A MYSQL CLEVER CLOUD -----------------
